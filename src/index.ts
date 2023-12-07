@@ -1,9 +1,10 @@
 // dayOneTaskOne()
 
-import { daySixTask } from './06-day'
+import { daySevenTask } from './07-day'
 
 // dayTwoTask()
 // dayThreeTask()
 // dayFourTask()
 // dayFiveTask()
-daySixTask()
+// daySixTask()
+daySevenTask()
