@@ -1,7 +1,6 @@
-import { dayOneTask } from './01-day-Trebuchet'
+import { dayNineTask } from './09-day-Mirage-Maintenance'
 
-dayOneTask()
-
+// dayOneTask()
 // dayTwoTask()
 // dayThreeTask()
 // dayFourTask()
@@ -9,3 +8,4 @@ dayOneTask()
 // daySixTask()
 // daySevenTask()
 // dayEightTask()
+dayNineTask()
