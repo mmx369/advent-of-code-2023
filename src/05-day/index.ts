@@ -10,7 +10,7 @@ async function readTextFile(path: string): Promise<string> {
 
 function parseData(rawData: string): {
   seeds2: number[]
-  finalSteps: number[][]
+  finalSteps: number[][][]
 } {
   const result = [] as any
   const data1 = rawData.split('\r\n')
@@ -18,7 +18,7 @@ function parseData(rawData: string): {
 
   for (let i = 0; i < data2.length; i++) {
     const data3 = data2[i].split(',')
-    const temp = [] as string[][]
+    const temp: string[][] = []
     for (let j = 0; j < data3.length; j++) {
       temp.push(data3[j].split(' '))
     }
@@ -27,16 +27,16 @@ function parseData(rawData: string): {
 
   const seeds = result.shift()[0]
   seeds.shift()
-  const seeds2 = seeds.map((el) => parseInt(el, 0))
+  const seeds2 = seeds.map((el: string) => parseInt(el, 0))
 
-  const finalSteps = [] as number[][]
+  const finalSteps: number[][][] = []
   for (let i = 0; i < result.length; i++) {
     result[i].shift()
   }
   for (let i = 0; i < result.length; i++) {
     const rrr = [] as any
     for (let j = 0; j < result[i].length; j++) {
-      const el = result[i][j].map((el) => {
+      const el = result[i][j].map((el: string) => {
         return Number(el)
       })
       rrr.push(el)
@@ -46,7 +46,7 @@ function parseData(rawData: string): {
   return { seeds2, finalSteps }
 }
 
-function calculateSeed(seed: number, maps: number[]) {
+function calculateSeed(seed: number, maps: number[][]) {
   let newSeed = seed
   if (maps !== undefined) {
     for (let i = 0; i < maps.length; i++) {
@@ -61,7 +61,7 @@ function calculateSeed(seed: number, maps: number[]) {
 }
 
 function newSeedRangeForPartTwo(seeds: number[]): any {
-  const ranges = [] as number[][]
+  const ranges: number[][] = []
   for (let i = 0; i < seeds.length; i += 2) {
     let endOfRange = seeds[i] + seeds[i + 1]
     ranges.push([seeds[i], endOfRange])
@@ -69,8 +69,8 @@ function newSeedRangeForPartTwo(seeds: number[]): any {
   return ranges
 }
 
-function findCorrespondedSource(seeds: number[], maps: number[][]): any {
-  const locations = [] as number[]
+function findCorrespondedSource(seeds: number[], maps: number[][][]): any {
+  const locations: number[] = []
   for (let i = 0; i < seeds.length; i++) {
     let tempRes = seeds[i]
     for (let j = 0; j < maps.length; j++) {
@@ -94,11 +94,11 @@ function arrayFromRange(range: any) {
 
 export async function dayFiveTask(): Promise<void> {
   console.log(`Advent of code challenge. Day 5`)
-  const rawData = await readTextFile('05-day-input-01.txt')
+  const rawData = await readTextFile('05-day-test-input-01.txt')
   const { seeds2, finalSteps } = parseData(rawData)
-  const seedsRange = newSeedRangeForPartTwo(seeds2)
+  // const seedsRange = newSeedRangeForPartTwo(seeds2)
   //   console.log('Seeds Range', seedsRange)
-  arrayFromRange([[1044452533, 1084842474]])
-  //   const minLocations = findCorrespondedSource(seedsWithRange, finalSteps)
-  //   console.log(minLocations)
+  // arrayFromRange([[1044452533, 1084842474]])
+  const minLocations = findCorrespondedSource(seeds2, finalSteps)
+  console.log(minLocations)
 }

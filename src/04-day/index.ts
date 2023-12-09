@@ -34,11 +34,13 @@ function calculatePoints(winNumbers: number[]): number {
 }
 
 function findWinningCombination(card: string): number[] {
-  let data1 = card.split(':')
+  const data1 = card.split(':')
   data1.shift()
-  let data2 = data1.join('').trim().split('|')
-  const data3 = [] as number[][]
+  const data2 = data1[0].split('|')
+  console.log(777, data2)
+  const data3: number[][] = []
   for (let i = 0; i < data2.length; i++) {
+    console.log(7676, data2[i])
     const res = data2[i].trim().split(' ')
     const res1 = res
       .map((el) => parseInt(el.trim(), 10))
@@ -47,11 +49,14 @@ function findWinningCombination(card: string): number[] {
       data3.push(res1)
     }
   }
+  console.log(data3)
+
   const commonElements = getCommonElements(data3[0], data3[1])
   return commonElements
 }
 
 function checkTotalWinningPoints(cards: string[]): number {
+  console.log(111, cards)
   let totalPoints = 0
   for (let i = 0; i < cards.length - 1; i++) {
     const winNumbers = findWinningCombination(cards[i])
@@ -83,7 +88,7 @@ function checkWinPartTwo(cards: string[]) {
 
 export async function dayFourTask(): Promise<void> {
   console.log(`Advent of code challenge. Day 4`)
-  const rawData = await readTextFile('04-day-input-02.txt')
+  const rawData = await readTextFile('04-day-test-input-01.txt')
   const parsedData = parseData(rawData)
   const totalPoints = checkTotalWinningPoints(parsedData)
   console.log(`Total wininnig points: ${totalPoints}`)

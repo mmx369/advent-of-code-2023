@@ -63,27 +63,27 @@ function multObjProps(obj: any) {
 
 function findMinSet(str: string[]) {
   const res = str.join(',').split(',')
-  console.log(3434, res)
-  const obj = {}
+  console.log(222, res)
+  const obj: Record<string, number> = {}
   for (let i = 0; i < res.length; i++) {
     const result = res[i].trim().split(' ')
-    console.log(result)
     if (obj.hasOwnProperty(result[1]) === false) {
       obj[result[1]] = parseInt(result[0])
     } else {
-      if (obj[result[1]] < result[0]) {
+      if (obj[result[1]] < parseInt(result[0], 10)) {
         obj[result[1]] = parseInt(result[0])
       }
     }
   }
+  console.log(333, obj)
   return multObjProps(obj)
 }
 
 function calculateMinCubesSet(data: string[][]) {
+  console.log(111, data)
   let totalSum = 0
   for (let i = 0; i < data.length; i++) {
     const res = findMinSet(data[i])
-    console.log(4444, res)
     totalSum += res
   }
   return totalSum
@@ -104,7 +104,7 @@ function calculatePossibilityOfGames(data: string[][]): number {
 
 export async function dayTwoTask(): Promise<void> {
   console.log(`It's advent of code challenge. Day 2`)
-  const rawData = await readTextFile('02-day-input-02.txt')
+  const rawData = await readTextFile('02-day-testinput-01.txt')
   const data = transformData(rawData)
   //   console.log('Data', data)
   const res = calculateMinCubesSet(data)
