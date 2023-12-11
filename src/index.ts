@@ -1,4 +1,4 @@
-import { dayNineTask } from './09-day-Mirage-Maintenance'
+import { dayTenTask } from './10-day-PipeMaze'
 
 // dayOneTask()
 // dayTwoTask()
@@ -8,4 +8,5 @@ import { dayNineTask } from './09-day-Mirage-Maintenance'
 // daySixTask()
 // daySevenTask()
 // dayEightTask()
-dayNineTask()
+// dayNineTask()
+dayTenTask()
